@@ -6,11 +6,24 @@
 /*   By: junmkang <junmkang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 23:59:26 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/22 02:25:17 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/23 15:32:18 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "philo.h"
+
+void	*ft_malloc(size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(size);
+	if (!ptr)
+	{
+		write(STDERR_FILENO, "ft_malloc error", 12);
+		exit(1);
+	}
+	return (ptr);
+}
 
 int		ft_atoi(const char *str)
 {

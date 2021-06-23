@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:26:57 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/22 02:39:49 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/23 15:25:00 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,7 @@ int		value_type_check(char **str)
 		while (str[y][x])
 		{
 			if (!('0' <= str[y][x] && str[y][x] <= '9'))
-			{
-				printf("test = %s\n", str[y]);
-				printf("test = %c\n", str[y][x]);
 				return (_ERROR);
-			}
 			x++;
 		}
 		y++;
@@ -55,12 +51,13 @@ int	main(int argc, char **argv)
 	t_info	info;
 
 	if (!(argc == 5 || argc == 6))
-		return (print_error_msg("Invalid count."));
+		return (print_error_msg("Invalid number. : 4 or 5"));
 	if (!(value_check(argv, &info, argc)))
 		return (print_error_msg("Invalid value."));
 
 	argc++;
 	argv++;
-	printf("test");
+
+	philo_loop(info);
 	return (_OK);
 }

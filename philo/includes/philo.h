@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:21:29 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/22 02:33:50 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/23 15:32:51 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@
 #	define _OK		0
 
 /*
-** ft_utils ===============================================
+**	ft_utils ===============================================
 */
 
+void		*ft_malloc(size_t size);
 size_t		ft_strlen(const char *str);
 int			ft_atoi(const char *str);
 
@@ -49,5 +50,11 @@ int			ft_atoi(const char *str);
 */
 
 int			print_error_msg(char *str);
+
+/*
+** philo_loop =============================================
+*/
+
+int			philo_loop(t_info info);
 
 #	endif
