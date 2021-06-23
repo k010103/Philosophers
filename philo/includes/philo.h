@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:21:29 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/23 15:32:51 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/24 00:03:24 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int			print_error_msg(char *str);
 ** philo_loop =============================================
 */
 
-int			philo_loop(t_info info);
+int			philo_setup(t_info *info);
+// int			philo_loop(t_info info);
 
 #	endif

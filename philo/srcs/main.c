@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:26:57 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/23 15:25:00 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/24 00:03:01 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		value_type_check(char **str)
 
 int		value_check(char **str, t_info *info, int argc)
 {
-	if (!value_type_check(str))
+	if ((value_type_check(str)))
 		return (_ERROR);
 	info->philo_num = ft_atoi(str[1]);
 	info->die = ft_atoi(str[2]);
@@ -52,12 +52,11 @@ int	main(int argc, char **argv)
 
 	if (!(argc == 5 || argc == 6))
 		return (print_error_msg("Invalid number. : 4 or 5"));
-	if (!(value_check(argv, &info, argc)))
+	if ((value_check(argv, &info, argc)))
 		return (print_error_msg("Invalid value."));
-
 	argc++;
 	argv++;
 
-	philo_loop(info);
+	philo_setup(&info);
 	return (_OK);
 }

@@ -5,19 +5,25 @@
 #include <string.h>
 #include <errno.h>
 
+pthread_mutex_t    mutex;
+
 void    *routine(void *thread_number)
 {
     int        i;
     int        cnt;
 
+    pthread_mutex_lock(&mutex);
+    printf("thread(%d): mutex lock\n", *(int *)thread_number);
     i = 0;
     while (i < 5)
     {
-        // usleep(1000 * 1000);
+        usleep(1000 * 1000);
         i++;
         printf("thread(%d): %d초 대기\n", *(int *)thread_number, i);
     }
     printf("thread end\n");
+    pthread_mutex_unlock(&mutex);
+    printf("thread(%d): mutex unlock\n", *(int *)thread_number);
     return (thread_number);
 }
 
@@ -31,23 +37,22 @@ int        main(void)
 
     number1 = 1;
     number2 = 2;
-    // if (pthread_create(&thread1, NULL, routine, (void *)&number1))
-    // {
-    //     fprintf(stderr, "thread(1): pthread_create error: %s", strerror(errno));
-    //     return (errno);
-    // }
-    // if (pthread_create(&thread2, NULL, routine, (void *)&number2))
-    // {
-    //     fprintf(stderr, "thread(2): pthread_create error: %s", strerror(errno));
-    //     return (errno);
-    // }
-    pthread_create(&thread2, NULL, routine, (void *)&number2);
+    printf("pthread create\n");
     pthread_create(&thread1, NULL, routine, (void *)&number1);
-	printf("왜 여기가 먼저 나와..?\n");
-    printf("detach thread2\n");
-    pthread_detach(thread2); // main thread에서 join하지 않아도 알아서 진행하고 종료함
-    printf("waiting for a thread\n");
+    pthread_create(&thread2, NULL, routine, (void *)&number2);
+
+    printf("mutex init\n");
+    pthread_mutex_init(&mutex, NULL);
+
+    printf("waiting for threads\n");
     pthread_join(thread1, &ret); // thread1을 대기함, routine의 값을 ret에 넣어줌
-    printf("main end: %d\n", *(int *)ret);
+    printf("thread1 = %d\n", *(int *)ret);
+    pthread_join(thread2, &ret); // thread1을 대기함, routine의 값을 ret에 넣어줌
+    printf("thread2 = %d\n", *(int *)ret);
+
+    printf("mutex destroy\n");
+    pthread_mutex_destroy(&mutex);
+
+    printf("main end\n");
     return (0);
 }

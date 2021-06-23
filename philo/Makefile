@@ -6,7 +6,7 @@
 #    By: junmkang <junmkang@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/21 22:38:10 by junmkang          #+#    #+#              #
-#    Updated: 2021/06/23 14:48:55 by junmkang         ###   ########.fr        #
+#    Updated: 2021/06/23 16:59:01 by junmkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS_DIR = ./srcs/
 SRCS_NAME = \
 	main.c \
 	ft_utils.c \
-	print_error_msg.c
+	print_error_msg.c \
+	philo_loop.c
 
 CC = gcc
 RM = rm -f
@@ -49,6 +50,6 @@ clean :
 
 fclean : clean
 	@$(RM) $(NAME) $(LIBFT_NAME)
-	@printf "$(CL_BOLD) 💀 모든게 지워졌어요. 💀\n"
+	@printf "$(CL_BOLD) 💀 philo 가 지워졌어요. 💀\n"
 
 re : fclean all
