@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junmkang <junmkang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:21:29 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/24 00:03:24 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/28 21:59:38 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,11 @@ int			print_error_msg(char *str);
 
 int			philo_setup(t_info *info);
 // int			philo_loop(t_info info);
+
+/*
+** philo_eat ==============================================
+*/
+
+int		philo_eat(t_info *info, t_philo *philo, int philo_ptr);
 
 #	endif

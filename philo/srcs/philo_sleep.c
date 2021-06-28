@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error_msg.c                                  :+:      :+:    :+:   */
+/*   philo_sleep.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: junmkang <junmkang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/21 23:56:34 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/22 00:00:53 by junmkang         ###   ########.fr       */
+/*   Created: 2021/06/24 14:36:49 by junmkang          #+#    #+#             */
+/*   Updated: 2021/06/28 21:15:50 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "philo.h"
 
-int		print_error_msg(char *str)
+// {time_ms} {philo_ptr} is sleeping
+int		philo_sleep(t_info *info, t_philo *philo, int philo_ptr)
 {
-	write(1, str, ft_strlen(str));
-	return (_ERROR);
+	usleep(info->sleep);
+	return (_OK);
 }
