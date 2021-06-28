@@ -6,21 +6,21 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 15:19:18 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/28 21:59:28 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/28 23:13:58 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "philo.h"
 
-int		allocate_fork_junmkang(t_philo *philo, t_info *info)
+int		allocate_fork_junmkang(t_philo *philo)
 {
 	int		count;
 
 	count = 0;
-	while (count < info->philo_num)
+	while (count < philo->argv_info.philo_num)
 	{
 		// printf("count : %d\n", count);
-		if ((pthread_mutex_init(&(philo[count].fork), NULL)))
+		if ((pthread_mutex_init(&(philo->pthread[count].fork), NULL)))
 			return (_ERROR);
 		count++;
 	}
@@ -74,21 +74,20 @@ int		philo_loop(t_philo *philo, t_info *info)
 	return (_OK);
 }
 
-int		philo_setup(t_info *info)
+int		philo_setup(t_philo *philo)
 {
-	t_philo				*philo;
 	int					count;
 
 	count = 0;
-	philo = ft_malloc(sizeof(t_philo) * info->philo_num);
-	allocate_fork_junmkang(philo, info);
+	philo->pthread = ft_malloc(sizeof(philo->pthread) * philo->argv_info.philo_num);
+	allocate_fork_junmkang(philo);
 	// int_test(test, &info);
 	// printf("philo_num = %d\n", info.philo_num);
 
-	while(count < info->philo_num)
-	{
-		pthread_create(&philo, NULL, philo_loop, (void *)&count);
-		count++;
-	}
+	// while(count < info->philo_num)
+	// {
+	// 	pthread_create(&philo, NULL, philo_loop, (void *)&count);
+	// 	count++;
+	// }
 	return (_OK);
 }

@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 02:08:21 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/28 21:57:13 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/28 23:12:26 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@
 /*
 **
 */
-
-typedef struct				s_philo
+typedef struct				s_pthread
 {
 	pthread_t				philo;
 	pthread_mutex_t			fork;
-	t_philo_current_info	cp_info;
-	t_info					gv_info;
+	struct timeval			last_eat_time;
+}							t_pthread;
+
+typedef struct				s_philo
+{
+	t_pthread				*pthread;
+	t_info					argv_info;
 }							t_philo;
 
 /*
@@ -37,16 +41,5 @@ typedef struct				s_info
 	int						sleep;
 	int						must_eat;
 }							t_info;
-
-/*
-**
-*/
-
-typedef struct				s_philo_current_info
-{
-	struct timeval			last_eat_time;
-
-}							t_philo_current_info;
-
 
 #	endif
