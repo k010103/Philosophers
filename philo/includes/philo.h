@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:21:29 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/29 18:01:57 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/29 21:25:17 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 t_info		g_argv_info;
 
 /*
-**	ft_utils ===============================================
+**	ft_utils ==============================================
 */
 
 void		*ft_malloc(size_t size);
@@ -55,7 +55,7 @@ int			ft_atoi(const char *str);
 ** philo_utils ============================================
 */
 
-int		get_current_time(int elapse);
+int			get_current_time(int elapse);
 
 /*
 ** print_error_msg ========================================
@@ -64,16 +64,24 @@ int		get_current_time(int elapse);
 int			print_error_msg(char *str);
 
 /*
+** philo_setup ============================================
+*/
+
+int			allocate_fork_junmkang(t_philo *philo);
+int			philo_setup(t_philo *philos);
+
+/*
 ** philo_loop =============================================
 */
 
-int		philo_setup(t_philo *philos);
-// int			philo_loop(t_info info);
+void		philo_initial_value(t_pthread *pthread);
+int			philo_free_join(t_philo *philos);
+int			philo_loop(t_philo *philos);
 
 /*
 ** philo_eat ==============================================
 */
-int		philo_eat(t_pthread *pthread);
+int			philo_eat(t_pthread *pthread);
 
 
 #	endif

@@ -6,25 +6,11 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 15:19:18 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/29 18:50:29 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/29 21:25:37 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "philo.h"
-
-int		allocate_fork_junmkang(t_philo *philo)
-{
-	int		count;
-
-	count = 0;
-	while (count < g_argv_info.philo_num)
-	{
-		if ((pthread_mutex_init(&(philo->pthread[count].fork), NULL)))
-			return (_ERROR);
-		count++;
-	}
-	return (_OK);
-}
 
 /*
 ** int		int_test(int *test)
@@ -55,50 +41,61 @@ int		allocate_fork_junmkang(t_philo *philo)
 ** 먹고 자고 생각.
 */
 
-void	philo_action(void *v_pthread)
+void			philo_initial_value(t_pthread *pthread)
+{
+	struct timeval	temp;
+
+	gettimeofday(&temp, NULL);
+	pthread->last_eat_time = temp;
+}
+
+static void		philo_action(void *v_pthread)
 {
 	t_pthread		*pthread;
 
 	pthread = (t_pthread *)v_pthread;
+	philo_initial_value(pthread);
 	// printf("%d\n", pthread.p_num);
 	// printf("%d\n", *(t_philo *)v_philo)
-	philo_eat(pthread);
-	// if (!(philo_eat(&philo, philo.pthread->philo)))
-	// 	philo_die(philo, philo.pthread->philo);
-	// philo_sleep(philo, philo.pthread->philo);
-	// philo_think(philo, philo.pthread->philo);
+	while (1)
+	{
+		philo_eat(pthread);
+		// if (!(philo_eat(&philo, philo.pthread->philo)))
+		// 	philo_die(philo, philo.pthread->philo);
+		// philo_sleep(philo, philo.pthread->philo);
+		// philo_think(philo, philo.pthread->philo);
+	}
 }
 
-int		philo_loop(t_philo *philos)
+int				philo_free_join(t_philo *philos)
+{
+	int		count;
+	void	*ret;
+
+	count = 0;
+	while (count < g_argv_info.philo_num)
+	{
+		pthread_join(philos->pthread[count].philo, &ret);
+		count++;
+	}
+	return (_OK);
+}
+
+int				philo_loop(t_philo *philos)
 {
 	int			count;
 
-	while (1)
+	gettimeofday(&g_argv_info.start_time, NULL);
+	count = 0;
+	while(count < g_argv_info.philo_num)
 	{
-		gettimeofday(&g_argv_info.start_time, NULL);
-		count = 0;
-		while(count < g_argv_info.philo_num)
-		{
-			philos->pthread[count].p_num = count;
-			// printf("%d\n", philos->pthread[count].p_num);
-			pthread_create(&philos->pthread[count].philo, \
-							NULL, philo_action, (void *)&(philos->pthread[count]));
-			count++;
-		}
+		philos->pthread[count].p_num = count;
+		// printf("%d\n", philos->pthread[count].p_num);
+		pthread_create(&philos->pthread[count].philo, \
+						NULL, philo_action, (void *)&(philos->pthread[count]));
+		count++;
 	}
 
 	return (_OK);
 }
 
-int		philo_setup(t_philo *philos)
-{
-	philos->pthread = ft_malloc(sizeof(philos->pthread) * g_argv_info.philo_num);
-
-	if ((allocate_fork_junmkang(philos)))
-		return (_ERROR);
-	philo_loop(philos);
-	// int_test(test, &info);
-	// printf("philo_num = %d\n", philo->g_argv_info.philo_num);
-
-	return (_OK);
-}

@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:37:20 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/29 18:40:08 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/29 21:26:03 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,18 @@ int		philo_eat(t_pthread *pthread)
 
 	philo_ptr = pthread->p_num;
 	last_time = pthread->last_eat_time;
-	usleep(g_argv_info.eat);
 	gettimeofday(&present_time, NULL);
+	usleep(g_argv_info.eat);
 
-	printf("number = %d %d\n", pthread->p_num, present_time.tv_usec - last_time.tv_usec);
-	// if (present_time.tv_usec - last_time.tv_usec < g_argv_info.die)
-	// {
+	// printf("number = %d %d\n", pthread->p_num, present_time.tv_usec - last_time.tv_usec);
+	if (present_time.tv_usec - last_time.tv_usec < g_argv_info.die)
+	{
 		gettimeofday(&last_time, NULL);
 		pthread->last_eat_time = last_time;
 		// printf("%d\n", last_time.tv_usec);
-	// }
-	// else
-	// {
-	// 	// printf("else return\n");
-	// 	return (_ERROR);
-	// }
+	}
+	else
+		return (_ERROR);
 
 	return (_OK);
 }
