@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:37:20 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/29 21:26:03 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/29 23:08:02 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,36 +25,24 @@ int		philo_eat(t_pthread *pthread)
 
 	philo_ptr = pthread->p_num;
 	last_time = pthread->last_eat_time;
-	gettimeofday(&present_time, NULL);
-	usleep(g_argv_info.eat);
 
-	// printf("number = %d %d\n", pthread->p_num, present_time.tv_usec - last_time.tv_usec);
+	// if ()
+	// pthread_mutex_lock(g_argv_info.fork[pthread->p_num]);
+	// pthread_mutex_lock(pthread->p_num - 1);
+
+	gettimeofday(&present_time, NULL);
+	print_philo_msg(present_time.tv_usec - g_argv_info.start_time.tv_usec, pthread->p_num + 1, EatMsg);
+	vsleep(g_argv_info.eat); // 200 while(0 -> 200) sleep(1);
 	if (present_time.tv_usec - last_time.tv_usec < g_argv_info.die)
 	{
 		gettimeofday(&last_time, NULL);
 		pthread->last_eat_time = last_time;
-		// printf("%d\n", last_time.tv_usec);
 	}
 	else
 		return (_ERROR);
 
+	// pthread_mutex_unlock(&fork[pthread->p_num]);
+	// pthread_mutex_unlock((&fork[pthread->p_num - 1]);
+
 	return (_OK);
 }
-
-// int		test(void)
-// {
-	// struct timeval	start;
-	// struct timeval	end;
-
-	// gettimeofday(&start, NULL);
-    // usleep(info->eat);
-    // gettimeofday(&end, NULL);
-
-    // int seconds  = end.tv_sec  - start.tv_sec;
-    // int useconds = end.tv_usec - start.tv_usec;
-	// printf("info->eat = %d\n", info->eat);
-	// printf("seconds = %d\n", seconds);
-	// printf("useconds = %d\n", useconds);
-
-// 	return (_OK);
-// }

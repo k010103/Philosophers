@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 13:29:33 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/29 17:16:41 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/29 23:14:19 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,22 @@ int		get_current_time(int elapse)
 	printf("info->eat = %d\n", elapse);
 	printf("seconds = %d\n", seconds);
 	printf("useconds = %d\n", useconds);
+	return (_OK);
+}
+
+static int	vsleep_usec(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (time.tv_usec);
+}
+
+void	vsleep(unsigned int time)
+{
+	unsigned int	finish_time;
+
+	finish_time = time + vsleep_usec();
+	while(finish_time > vsleep_usec())
+	{usleep(100);}
 }

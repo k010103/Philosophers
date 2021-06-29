@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 15:19:18 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/29 21:25:37 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/29 23:10:40 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,12 @@ static void		philo_action(void *v_pthread)
 	// printf("%d\n", *(t_philo *)v_philo)
 	while (1)
 	{
-		philo_eat(pthread);
-		// if (!(philo_eat(&philo, philo.pthread->philo)))
-		// 	philo_die(philo, philo.pthread->philo);
-		// philo_sleep(philo, philo.pthread->philo);
-		// philo_think(philo, philo.pthread->philo);
+		if ((philo_eat(pthread)))
+			philo_die(pthread);
+		// usleep(1000 * 1000);
+		philo_sleep(pthread);
+		philo_think(pthread);
 	}
-}
-
-int				philo_free_join(t_philo *philos)
-{
-	int		count;
-	void	*ret;
-
-	count = 0;
-	while (count < g_argv_info.philo_num)
-	{
-		pthread_join(philos->pthread[count].philo, &ret);
-		count++;
-	}
-	return (_OK);
 }
 
 int				philo_loop(t_philo *philos)

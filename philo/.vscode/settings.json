@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"philo.h": "c",
-		"bitset": "c"
+		"bitset": "c",
+		"sstream": "c"
 	}
 }

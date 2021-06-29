@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_think.c                                      :+:      :+:    :+:   */
+/*   philo_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 20:38:35 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/29 22:33:15 by junmkang         ###   ########.fr       */
+/*   Created: 2021/06/29 21:35:15 by junmkang          #+#    #+#             */
+/*   Updated: 2021/06/29 22:48:58 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "philo.h"
 
-int			philo_think(t_pthread *pthread)
+int			philo_join(t_philo *philos)
 {
-	struct timeval	present_time;
+	int		count;
 
-	gettimeofday(&present_time, NULL);
-	print_philo_msg(present_time.tv_usec - g_argv_info.start_time.tv_usec, pthread->p_num + 1, ThinkMsg);
+	count = 0;
+	while (count < g_argv_info.philo_num)
+	{
+		pthread_join(philos->pthread[count % 2].philo, NULL);
+		count++;
+	}
 	return (_OK);
 }

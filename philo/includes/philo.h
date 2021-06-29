@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:21:29 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/29 21:25:17 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/29 23:07:49 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,27 @@ int			ft_atoi(const char *str);
 ** philo_utils ============================================
 */
 
+void		vsleep(unsigned int time);
 int			get_current_time(int elapse);
 
 /*
-** print_error_msg ========================================
+** print_msg ==============================================
 */
 
+int			print_philo_msg(int time, int philo_ptr, t_msg msg);
 int			print_error_msg(char *str);
+
+/*
+** philo_free =============================================
+*/
+
+int			philo_join(t_philo *philos);
 
 /*
 ** philo_setup ============================================
 */
 
-int			allocate_fork_junmkang(t_philo *philo);
+int			allocate_mutex_junmkang(void);
 int			philo_setup(t_philo *philos);
 
 /*
@@ -75,13 +83,29 @@ int			philo_setup(t_philo *philos);
 */
 
 void		philo_initial_value(t_pthread *pthread);
-int			philo_free_join(t_philo *philos);
 int			philo_loop(t_philo *philos);
 
 /*
 ** philo_eat ==============================================
 */
+
 int			philo_eat(t_pthread *pthread);
 
+/*
+** philo_sleep ============================================
+*/
+
+int			philo_sleep(t_pthread *pthread);
+
+/*
+** philo_think ============================================
+*/
+
+int			philo_think(t_pthread *pthread);
+
+/*
+** philo_die ==============================================
+*/
+int			philo_die(t_pthread *pthread);
 
 #	endif

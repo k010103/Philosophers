@@ -6,7 +6,7 @@
 #    By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:24:29 by junmkang          #+#    #+#              #
-#    Updated: 2021/06/29 21:22:15 by junmkang         ###   ########.fr        #
+#    Updated: 2021/06/29 23:09:43 by junmkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,14 @@ SRCS_DIR = ./srcs/
 SRCS_NAME = \
 	main.c \
 	ft_utils.c \
+	philo_utils.c \
+	philo_free.c \
 	philo_setup.c \
 	philo_loop.c \
 	philo_eat.c \
 	philo_sleep.c \
 	philo_think.c \
+	philo_die.c \
 	print_msg.c
 
 
