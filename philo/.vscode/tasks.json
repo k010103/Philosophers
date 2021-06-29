@@ -1,0 +1,26 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "gcc build active file",
+			"command": "/usr/bin/gcc",
+			"args": [
+				"-I/Users/junmkang/code/philo/philo/includes",
+				"-g",
+				"${fileDirname}/*.c",
+				"-o",
+				"${fileDirname}/philo"
+			],
+			"options": {
+				"cwd": "/usr/bin"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build"
+		}
+	]
+}

@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:37:20 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/28 20:50:13 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/29 18:18:49 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,25 @@
 
 // last-eat - 현재 시간.
 // last_eat - time < info->eat : 죽지않음.
-int		philo_eat(t_info *info, t_philo *philo, int philo_ptr)
+// 마지막 식사시간 - usleep 이후 현재시간. :
+int		philo_eat(t_pthread *pthread)
 {
-	struct timeval	time;
+	struct timeval	present_time;
 	struct timeval	last_time;
+	int				philo_ptr;
 
-	last_time = philo[philo_ptr].cp_info.last_eat_time;
-	usleep(info->eat);
-	gettimeofday(&time, NULL);
+	philo_ptr = pthread->p_num;
+	last_time = pthread->last_eat_time;
+	// {time_ms} {philo_ptr} is eating
+	// printf("time = %d\n", last_time.tv_usec);
+	usleep(g_argv_info.eat * 100);
+	gettimeofday(&present_time, NULL);
+	printf("%d %d time = %d\n", last_time.tv_usec, present_time.tv_usec, last_time.tv_usec - present_time.tv_usec);
 	// 살음.
-	if (last_time.tv_usec - time.tv_usec < info->die)
+	if (last_time.tv_usec - present_time.tv_usec < g_argv_info.die)
 	{
 		gettimeofday(&last_time, NULL);
-		philo[philo_ptr].cp_info.last_eat_time = last_time;
+		pthread->last_eat_time = last_time;
 	}
 	else
 		return (_ERROR);
@@ -35,8 +41,8 @@ int		philo_eat(t_info *info, t_philo *philo, int philo_ptr)
 	return (_OK);
 }
 
-int		test(void)
-{
+// int		test(void)
+// {
 	// struct timeval	start;
 	// struct timeval	end;
 
@@ -50,5 +56,5 @@ int		test(void)
 	// printf("seconds = %d\n", seconds);
 	// printf("useconds = %d\n", useconds);
 
-	return (_OK);
-}
+// 	return (_OK);
+// }
