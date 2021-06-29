@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 15:19:18 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/29 18:17:53 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/29 18:50:29 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int		allocate_fork_junmkang(t_philo *philo)
 	count = 0;
 	while (count < g_argv_info.philo_num)
 	{
-		// printf("count : %d\n", count);
 		if ((pthread_mutex_init(&(philo->pthread[count].fork), NULL)))
 			return (_ERROR);
 		count++;
@@ -74,7 +73,6 @@ int		philo_loop(t_philo *philos)
 {
 	int			count;
 
-	// printf("%lu %lu\n", sizeof(void *), sizeof(t_philo *));
 	while (1)
 	{
 		gettimeofday(&g_argv_info.start_time, NULL);
@@ -83,7 +81,8 @@ int		philo_loop(t_philo *philos)
 		{
 			philos->pthread[count].p_num = count;
 			// printf("%d\n", philos->pthread[count].p_num);
-			pthread_create(&philos->pthread[0].philo, NULL, philo_action, (void *)&(philos->pthread[0]));
+			pthread_create(&philos->pthread[count].philo, \
+							NULL, philo_action, (void *)&(philos->pthread[count]));
 			count++;
 		}
 	}
@@ -95,7 +94,8 @@ int		philo_setup(t_philo *philos)
 {
 	philos->pthread = ft_malloc(sizeof(philos->pthread) * g_argv_info.philo_num);
 
-	allocate_fork_junmkang(philos);
+	if ((allocate_fork_junmkang(philos)))
+		return (_ERROR);
 	philo_loop(philos);
 	// int_test(test, &info);
 	// printf("philo_num = %d\n", philo->g_argv_info.philo_num);

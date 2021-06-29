@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:26:57 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/29 18:02:44 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/29 18:46:40 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	main(int argc, char **argv)
 	if ((value_check(argv, &g_argv_info, argc)))
 		return (print_error_msg("Invalid value."));
 
-	philo_setup(&philos);
+	if ((philo_setup(&philos)))
+		return (_ERROR);
 	return (_OK);
 }
