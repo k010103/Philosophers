@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 20:38:35 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/29 22:33:15 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/30 22:23:29 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int			philo_think(t_pthread *pthread)
 {
-	struct timeval	present_time;
+	long long	present_time;
 
-	gettimeofday(&present_time, NULL);
-	print_philo_msg(present_time.tv_usec - g_argv_info.start_time.tv_usec, pthread->p_num + 1, ThinkMsg);
+	present_time = now_time();
+	print_philo_msg(present_time - loop_info.start_time, \
+					pthread->p_num + 1, ThinkMsg);
 	return (_OK);
 }

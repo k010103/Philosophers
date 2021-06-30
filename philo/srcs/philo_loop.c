@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 15:19:18 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/29 23:10:40 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/30 22:24:07 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,16 @@
 ** 먹고 자고 생각.
 */
 
-void			philo_initial_value(t_pthread *pthread)
-{
-	struct timeval	temp;
-
-	gettimeofday(&temp, NULL);
-	pthread->last_eat_time = temp;
-}
-
-static void		philo_action(void *v_pthread)
+void		*philo_action(void *v_pthread)
 {
 	t_pthread		*pthread;
 
 	pthread = (t_pthread *)v_pthread;
-	philo_initial_value(pthread);
-	// printf("%d\n", pthread.p_num);
-	// printf("%d\n", *(t_philo *)v_philo)
+	pthread->last_eat_time = now_time();
 	while (1)
 	{
 		if ((philo_eat(pthread)))
 			philo_die(pthread);
-		// usleep(1000 * 1000);
 		philo_sleep(pthread);
 		philo_think(pthread);
 	}
@@ -71,12 +60,10 @@ int				philo_loop(t_philo *philos)
 {
 	int			count;
 
-	gettimeofday(&g_argv_info.start_time, NULL);
 	count = 0;
 	while(count < g_argv_info.philo_num)
 	{
 		philos->pthread[count].p_num = count;
-		// printf("%d\n", philos->pthread[count].p_num);
 		pthread_create(&philos->pthread[count].philo, \
 						NULL, philo_action, (void *)&(philos->pthread[count]));
 		count++;

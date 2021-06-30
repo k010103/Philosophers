@@ -6,43 +6,26 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 13:29:33 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/29 23:14:19 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/30 22:24:56 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "philo.h"
 
-// 현재시간 가져오기.
-int		get_current_time(int elapse)
+long long		now_time(void)
 {
-	struct timeval	start;
-	struct timeval	end;
+	struct timeval	current_time;
 
-	gettimeofday(&start, NULL);
-    usleep(elapse);
-    gettimeofday(&end, NULL);
-
-    int seconds  = end.tv_sec  - start.tv_sec;
-    int useconds = end.tv_usec - start.tv_usec;
-	printf("info->eat = %d\n", elapse);
-	printf("seconds = %d\n", seconds);
-	printf("useconds = %d\n", useconds);
-	return (_OK);
-}
-
-static int	vsleep_usec(void)
-{
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return (time.tv_usec);
+	gettimeofday(&current_time, NULL);
+	// 이 공식이 왜 나온거야..?
+	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 }
 
 void	vsleep(unsigned int time)
 {
 	unsigned int	finish_time;
 
-	finish_time = time + vsleep_usec();
-	while(finish_time > vsleep_usec())
-	{usleep(100);}
+	finish_time = time + now_time();
+	while(finish_time > (unsigned int)now_time())
+	{}
 }

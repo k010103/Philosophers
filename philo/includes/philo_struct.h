@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 02:08:21 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/29 22:40:06 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/06/30 22:14:52 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef enum				e_msg
 typedef struct				s_pthread
 {
 	pthread_t				philo;
-	struct timeval			last_eat_time;
+	long long				last_eat_time;
 	int						p_num;
 
 }							t_pthread;
@@ -47,10 +47,14 @@ typedef struct				s_info
 	int						eat;
 	int						sleep;
 	int						must_eat;
-	struct timeval			start_time;
+}							t_info;
+
+typedef struct				s_p_info
+{
+	long long				start_time;
 	pthread_mutex_t			mutex_text;
 	pthread_mutex_t			*fork;
-}							t_info;
+}							t_p_info;
 
 /*
 ** philo (가장 큰 구조체)
