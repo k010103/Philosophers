@@ -2,6 +2,7 @@
 	"files.associations": {
 		"philo.h": "c",
 		"bitset": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"__threading_support": "c"
 	}
 }

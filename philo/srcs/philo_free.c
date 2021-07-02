@@ -6,34 +6,33 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 21:35:15 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/30 21:43:17 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/02 18:22:46 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "philo.h"
 
-int			philo_join(t_philo *philos)
+int			philo_join(t_info *info)
 {
 	int		count;
 
 	count = 0;
-
-	while (count < g_argv_info.philo_num)
+	while (count < info->philo_num)
 	{
-		pthread_join(philos->pthread[count].philo, NULL);
+		pthread_join(info->philos[count].thread, NULL);
 		count++;
 	}
 	return (_OK);
 }
 
-int			fork_destroy(void)
+int			fork_destroy(t_info *info)
 {
 	int		count;
 
 	count = 0;
-	while (count < g_argv_info.philo_num)
+	while (count < info->philo_num)
 	{
-		pthread_mutex_destroy(&loop_info.fork[count]);
+		pthread_mutex_destroy(&info->forks[count]);
 		count++;
 	}
 	return (_OK);

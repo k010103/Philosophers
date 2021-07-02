@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:21:29 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/30 22:17:13 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/02 17:57:26 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@
 #	define _ERROR	1
 #	define _OK		0
 
-/*
-** global variables =======================================
-*/
-
-t_info		g_argv_info;
-t_p_info	loop_info;
+#	define ForkMsg	"has taken a fork"
+#	define EatMsg	"is eating"
+#	define SleepMsg	"is sleeping"
+#	define ThinkMsg	"is thinking"
+#	define DiedMsg	"died"
 
 /*
 **	ft_utils ==============================================
@@ -51,6 +50,12 @@ t_p_info	loop_info;
 void		*ft_malloc(size_t size);
 size_t		ft_strlen(const char *str);
 int			ft_atoi(const char *str);
+
+/*
+**	info_init =============================================
+*/
+
+int			info_init(t_info *info, int argc, char **argv);
 
 /*
 ** philo_utils ============================================
@@ -63,50 +68,60 @@ long long	now_time(void);
 ** print_msg ==============================================
 */
 
-int			print_philo_msg(long long time, int philo_ptr, t_msg msg);
+int			print_philo_msg(t_philo *philo, char *msg);
 int			print_error_msg(char *str);
 
 /*
 ** philo_free =============================================
 */
 
-int			philo_join(t_philo *philos);
-int			fork_destroy(void);
+int			philo_join(t_info *info);
+int			fork_destroy(t_info *info);
 
 /*
-** philo_setup ============================================
+** philo_init =============================================
 */
 
-int			allocate_mutex_junmkang(void);
-int			philo_setup(t_philo *philos);
+int			init_philo_junmkang(t_info *info);
+int			philo_setup(t_info *info);
 
 /*
 ** philo_loop =============================================
 */
 
-int			philo_loop(t_philo *philos);
+void		*philo_action(void *v_pthread);
+int			create_philos(t_info *info);
+int			philo_loop(t_info *info);
+
+/*
+** philo_forks ============================================
+*/
+
+int			philo_forks(t_philo *philo);
+int			philo_unforks(t_philo *philo);
 
 /*
 ** philo_eat ==============================================
 */
 
-int			philo_eat(t_pthread *pthread);
+int			philo_eat(t_philo *philo);
 
 /*
 ** philo_sleep ============================================
 */
 
-int			philo_sleep(t_pthread *pthread);
+int			philo_sleep(t_philo *philo);
 
 /*
 ** philo_think ============================================
 */
 
-int			philo_think(t_pthread *pthread);
+int			philo_think(t_philo *philo);
 
 /*
 ** philo_die ==============================================
 */
-int			philo_die(t_pthread *pthread);
+
+int			philo_die(t_philo *philo);
 
 #	endif

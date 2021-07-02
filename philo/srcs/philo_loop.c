@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 15:19:18 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/30 22:24:07 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/02 17:46:22 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,37 @@
 
 void		*philo_action(void *v_pthread)
 {
-	t_pthread		*pthread;
+	t_philo		*philo;
 
-	pthread = (t_pthread *)v_pthread;
-	pthread->last_eat_time = now_time();
+	philo = (t_philo *)v_pthread;
+	philo->last_eat_time = now_time();
 	while (1)
 	{
-		if ((philo_eat(pthread)))
-			philo_die(pthread);
-		philo_sleep(pthread);
-		philo_think(pthread);
+		philo_forks(philo);
+		if ((philo_eat(philo)))
+			philo_die(philo);
+		philo_sleep(philo);
+		philo_think(philo);
 	}
 }
 
-int				philo_loop(t_philo *philos)
+int			create_philos(t_info *info)
 {
-	int			count;
+	int		count;
 
 	count = 0;
-	while(count < g_argv_info.philo_num)
+	while(count < info->philo_num)
 	{
-		philos->pthread[count].p_num = count;
-		pthread_create(&philos->pthread[count].philo, \
-						NULL, philo_action, (void *)&(philos->pthread[count]));
+		pthread_create(&info->philos[count].thread, \
+						NULL, philo_action, (void *)&info->philos[count]);
 		count++;
 	}
+	return (_OK);
+}
 
+int				philo_loop(t_info *info)
+{
+	create_philos(info);
 	return (_OK);
 }
 
