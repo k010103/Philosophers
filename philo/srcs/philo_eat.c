@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:37:20 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/30 22:23:01 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/02 16:14:33 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,45 +21,39 @@
 int		philo_has_fork(t_pthread *pthread)
 {
 	long long		time;
-	int				one_fork;
-	int				two_fork;
-	int				a;
-	int				b;
+	int				r_fork;
+	int				l_fork;
 
-	one_fork = pthread->p_num;
+	r_fork = pthread->p_num; // my_fork
 	if (pthread->p_num - 1 < 0)
-		two_fork = 0;
+		l_fork = g_argv_info.philo_num - 1;
 	else
-		two_fork = pthread->p_num - 1;
-	a = pthread_mutex_lock(&(loop_info.fork[one_fork]));
+		l_fork = pthread->p_num - 1;
+	pthread_mutex_lock(&(loop_info.fork[r_fork]));
 	time = now_time();
 	print_philo_msg(time - loop_info.start_time, \
 					pthread->p_num + 1, ForkMsg);
-	printf("lock_a = %d\n", a);
-	printf("one_fork = %d\n", one_fork);
-	b = pthread_mutex_lock(&(loop_info.fork[two_fork]));
+	pthread_mutex_lock(&(loop_info.fork[l_fork]));
 	time = now_time();
 	print_philo_msg(time - loop_info.start_time, \
 					pthread->p_num + 1, ForkMsg);
-	printf("lock_b = %d\n", b);
-	printf("two_fork = %d\n", two_fork);
 	return (_OK);
 }
 
 int		philo_has_unfork(t_pthread *pthread)
 {
-	int				one_fork;
-	int				two_fork;
+	int				r_fork;
+	int				l_fork;
 	int				a;
 	int				b;
 
-	one_fork = pthread->p_num;
+	r_fork = pthread->p_num;
 	if (pthread->p_num - 1 < 0)
-		two_fork = 0;
+		l_fork = g_argv_info.philo_num - 1;
 	else
-		two_fork = pthread->p_num - 1;
-	a = pthread_mutex_unlock(&(loop_info.fork[one_fork]));
-	b = pthread_mutex_unlock(&(loop_info.fork[two_fork]));
+		l_fork = pthread->p_num - 1;
+	a = pthread_mutex_unlock(&(loop_info.fork[r_fork]));
+	b = pthread_mutex_unlock(&(loop_info.fork[l_fork]));
 	return (_OK);
 }
 
@@ -72,13 +66,12 @@ int		philo_eat(t_pthread *pthread)
 	philo_ptr = pthread->p_num;
 	last_time = pthread->last_eat_time;
 
-	if (philo_ptr % 2 == 0)
-		vsleep(1);
-	philo_has_fork(pthread);
+	if ((philo_has_fork(pthread)))
+		return (_ERROR);
 	present_time = now_time();
 	print_philo_msg(present_time - loop_info.start_time, \
 					pthread->p_num + 1, EatMsg);
-	vsleep((unsigned int)g_argv_info.eat); // 200 while(0 -> 200) sleep(1);
+	vsleep((unsigned int)g_argv_info.eat);
 	if (present_time - last_time < g_argv_info.die)
 	{
 		last_time = now_time();
@@ -88,7 +81,7 @@ int		philo_eat(t_pthread *pthread)
 	{
 		return (_ERROR);
 	}
-	philo_has_unfork(pthread);
-
+	if ((philo_has_unfork(pthread)))
+		return (_ERROR);
 	return (_OK);
 }

@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 21:17:19 by junmkang          #+#    #+#             */
-/*   Updated: 2021/06/30 21:51:34 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/02 15:56:42 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		allocate_mutex_junmkang(void)
 	int		x;
 
 	count = 0;
+	// printf("g_argv_info.philo_num = %d\n", g_argv_info.philo_num);
 	while (count < g_argv_info.philo_num)
 	{
 		if ((x = pthread_mutex_init(&(loop_info.fork[count]), NULL)))
@@ -32,7 +33,7 @@ int		allocate_mutex_junmkang(void)
 int		philo_setup(t_philo *philos)
 {
 	philos->pthread = ft_malloc(sizeof(philos->pthread) * g_argv_info.philo_num);
-	loop_info.fork = ft_malloc(sizeof(pthread_mutex_t) * g_argv_info.philo_num);
+	loop_info.fork = ft_malloc(sizeof(pthread_mutex_t) * (g_argv_info.philo_num));
 	if ((allocate_mutex_junmkang()))
 		return (_ERROR);
 	loop_info.start_time = now_time();
