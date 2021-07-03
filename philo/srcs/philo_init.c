@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 21:17:19 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 17:25:56 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/03 22:27:25 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,6 @@ int		init_philo_junmkang(t_info *info)
 	pthread_mutex_init(&info->mutex_text, NULL);
 	return (_OK);
 }
-
-// int		init_monitor(t_info *info)
-// {
-// 	int	count;
-
-// 	return (_OK);
-// }
 
 int		philo_setup(t_info *info)
 {

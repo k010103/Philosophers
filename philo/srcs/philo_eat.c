@@ -6,17 +6,11 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:37:20 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 21:29:00 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/03 22:28:50 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "philo.h"
-
-
-// last-eat - 현재 시간.
-// last_eat - time < info->eat : 죽지않음.
-// 마지막 식사시간 - usleep 이후 현재시간. :
-// {time_ms} {philo_ptr} is eating
 
 int		philo_eat(t_philo *philo)
 {
@@ -25,7 +19,7 @@ int		philo_eat(t_philo *philo)
 
 	if (philo->info->die_or_life || philo->info->it_one)
 		return (_ERROR);
-	print_philo_msg(philo, EatMsg);
+	print_philo_msg(philo, EAT_MSG);
 	vsleep((unsigned int)philo->info->eat);
 	present_time = now_time();
 	if (present_time - philo->last_eat_time <= (long long)(philo->info->die))

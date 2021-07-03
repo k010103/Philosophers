@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 21:35:15 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 21:22:45 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/03 22:27:59 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,12 @@ int			philo_join(t_info *info)
 int			fork_destroy(t_info *info)
 {
 	int		count;
-	int		a;
 
 	count = 0;
 	while (count < info->philo_num)
 	{
-		if ((a = pthread_mutex_destroy(&info->forks[count])))
-		{
-			printf("%d\n", a);
+		if ((pthread_mutex_destroy(&info->forks[count])))
 			return (_ERROR);
-		}
 		count++;
 	}
 	return (_OK);

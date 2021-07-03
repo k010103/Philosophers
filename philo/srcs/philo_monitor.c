@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 12:34:17 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 21:45:51 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/03 22:32:02 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			*philo_monitor(void *pthread)
 			time = now_time();
 			if (time - philo->last_eat_time > (long long)(info->die))
 			{
-				print_philo_msg(philo, DiedMsg);
+				print_philo_msg(philo, DIED_MSG);
 				info->die_or_life = 1;
 				info->monitor_life = 1;
 			}
@@ -57,5 +57,4 @@ void			*philo_monitor(void *pthread)
 			count++;
 		}
 	}
-	return (NULL);
 }
