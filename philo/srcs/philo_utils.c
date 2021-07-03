@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 13:29:33 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/02 15:12:28 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/02 21:16:45 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ long long		now_time(void)
 	gettimeofday(&current_time, NULL);
 	// 이 공식이 왜 나온거야..?
 	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
+	// 현재 시간 tv_sec 1.3 = 
 }
 
 void	vsleep(unsigned int time)

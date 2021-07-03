@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 15:19:18 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/02 17:46:22 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/03 12:25:49 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,20 @@
 void		*philo_action(void *v_pthread)
 {
 	t_philo		*philo;
+	int			x;
 
 	philo = (t_philo *)v_pthread;
+	if (philo->p_ptr % 2 == 0)
+		vsleep(1);
 	philo->last_eat_time = now_time();
 	while (1)
 	{
 		philo_forks(philo);
-		if ((philo_eat(philo)))
-			philo_die(philo);
-		philo_sleep(philo);
-		philo_think(philo);
+		if ((x = philo_eat(philo)))
+			philo_die(philo);// x ms
+		philo_sleep(philo);//100 ms
+		philo_think(philo);// x + 100 + 2 ms
+		//revision_time = current - 100;// x+2
 	}
 }
 
