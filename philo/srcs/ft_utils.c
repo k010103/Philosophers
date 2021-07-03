@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 23:59:26 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 16:48:40 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/03 21:43:40 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_malloc(size_t size)
 	ptr = malloc(size);
 	if (!ptr)
 		return (0);
-	memset(ptr, 0, sizeof(ptr));
+	memset(ptr, 0, size);
 	return (ptr);
 }
 

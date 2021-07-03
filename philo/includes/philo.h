@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:21:29 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 17:53:26 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/03 20:15:54 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int			info_init(t_info *info, int argc, char **argv);
 
 void		vsleep(unsigned int time);
 long long	now_time(void);
+long long	ms_now_time(t_philo *philo);
 
 /*
 ** print_msg ==============================================

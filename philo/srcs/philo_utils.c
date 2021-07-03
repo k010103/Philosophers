@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 13:29:33 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 16:18:54 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/03 21:29:18 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,12 @@ void	vsleep(unsigned int time)
 	finish_time = time + now_time();
 	while(finish_time > (unsigned int)now_time())
 	{usleep(50);}
+}
+
+long long		ms_now_time(t_philo *philo)
+{
+	long long		time;
+
+	time = now_time() - philo->info->start_time;
+	return (time);
 }

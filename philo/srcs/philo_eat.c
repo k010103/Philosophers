@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:37:20 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 18:03:00 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/03 21:29:00 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int		philo_eat(t_philo *philo)
 
 	if (philo->info->die_or_life || philo->info->it_one)
 		return (_ERROR);
+	print_philo_msg(philo, EatMsg);
 	vsleep((unsigned int)philo->info->eat);
 	present_time = now_time();
-	if (present_time - philo->last_eat_time < (long long)(philo->info->die))
+	if (present_time - philo->last_eat_time <= (long long)(philo->info->die))
 	{
 		philo->eaten_num += 1;
-		print_philo_msg(philo, EatMsg);
 		last_time = now_time();
 		philo->last_eat_time = last_time;
 	}

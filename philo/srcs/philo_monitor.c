@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 12:34:17 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 17:48:18 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/03 21:45:51 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static int		must_eat_chk(t_info *info)
 	int		count;
 
 	count = 0;
-	printf("must_eat = %d\n", info->philo_num);
 	while (count < info->philo_num)
 	{
 		if (info->philos[count].eaten_num < info->must_eat)
@@ -36,7 +35,7 @@ void			*philo_monitor(void *pthread)
 
 	info = (t_info *)pthread;
 	vsleep(info->die);
-	while (!info->die_or_life)
+	while (!info->monitor_life)
 	{
 		count = 0;
 		while (count < info->philo_num)
@@ -47,9 +46,14 @@ void			*philo_monitor(void *pthread)
 			{
 				print_philo_msg(philo, DiedMsg);
 				info->die_or_life = 1;
+				info->monitor_life = 1;
 			}
-			if (info->must_eat)
-				must_eat_chk(info);
+			else if (info->must_eat)
+				if (!(must_eat_chk(info)))
+				{
+					info->monitor_life = 1;
+					info->die_or_life = 1;
+				}
 			count++;
 		}
 	}

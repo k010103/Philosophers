@@ -6,7 +6,7 @@
 #    By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:24:29 by junmkang          #+#    #+#              #
-#    Updated: 2021/07/03 17:53:07 by junmkang         ###   ########.fr        #
+#    Updated: 2021/07/03 20:37:46 by junmkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,8 @@ SRCS_NAME = \
 
 CC = gcc
 RM = rm -f
-# FLAG = -Wall -Wextra -Werror -I $(INCLUDE_DIR)
-FLAG = -Wall -Wextra -I $(INCLUDE_DIR)
+FLAG = -Wall -Wextra -Werror -fsanitize=address -I $(INCLUDE_DIR)
+# FLAG = -Wall -Wextra -I $(INCLUDE_DIR)
 
 # Color
 CL_BOLD	 = \e[1m
