@@ -6,7 +6,7 @@
 #    By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:24:29 by junmkang          #+#    #+#              #
-#    Updated: 2021/07/02 18:07:59 by junmkang         ###   ########.fr        #
+#    Updated: 2021/07/03 15:34:50 by junmkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS_NAME = \
 	philo_free.c \
 	philo_init.c \
 	philo_loop.c \
+	philo_monitor.c \
 	phlio_forks.c \
 	philo_eat.c \
 	philo_sleep.c \

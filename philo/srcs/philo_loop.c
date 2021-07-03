@@ -6,40 +6,11 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 15:19:18 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 12:25:49 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/03 15:52:53 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "philo.h"
-
-/*
-** int		int_test(int *test)
-** {
-** 	int		count;
-
-** 	count = 0;
-** 	while (count < info->philo_num)
-** 	{
-** 		*test++ = count + 1;
-** 		count++;
-** 	}
-** 	return (_OK);
-** }
-
-
-** int		test(void)
-** {
-** 	struct timeval    my_time;
-**     gettimeofday(&my_time, NULL);
-**     printf("time : %ld\n", my_time.tv_sec);
-**     printf("macro time : %d\n", my_time.tv_usec);
-
-** 	return (_OK);
-** }
-
-** (eating -> sleeping -> thinking)
-** 먹고 자고 생각.
-*/
 
 void		*philo_action(void *v_pthread)
 {
@@ -63,13 +34,19 @@ void		*philo_action(void *v_pthread)
 
 int			create_philos(t_info *info)
 {
-	int		count;
+	int			count;
+	pthread_t	monitor;
 
 	count = 0;
 	while(count < info->philo_num)
 	{
-		pthread_create(&info->philos[count].thread, \
-						NULL, philo_action, (void *)&info->philos[count]);
+		if ((pthread_create(&info->philos[count].thread, \
+						NULL, philo_action, (void *)&info->philos[count])))
+						return (_ERROR);
+		if ((pthread_create(&monitor, \
+						NULL, philo_monitor, (void *)&info->philos[count])))
+						return (_ERROR);
+		pthread_detach(monitor);
 		count++;
 	}
 	return (_OK);
@@ -77,7 +54,8 @@ int			create_philos(t_info *info)
 
 int				philo_loop(t_info *info)
 {
-	create_philos(info);
+	if ((create_philos(info)))
+		return (print_error_msg("create_philos : error\n"));
 	return (_OK);
 }
 
