@@ -6,26 +6,51 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 12:34:17 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 15:53:00 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/03 17:48:18 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void		*philo_monitor(void *pthread)
+static int		must_eat_chk(t_info *info)
 {
-	t_philo		*monitor;
-	long long	time;
+	int		count;
 
-	monitor = (t_philo *)pthread;
-	vsleep(monitor->info->die);
-	while (1)
+	count = 0;
+	printf("must_eat = %d\n", info->philo_num);
+	while (count < info->philo_num)
 	{
-		time = now_time();
-		if (time - monitor->last_eat_time > (long long)(monitor->info->die))
+		if (info->philos[count].eaten_num < info->must_eat)
+			return (_ERROR);
+		count++;
+	}
+	return (_OK);
+}
+
+void			*philo_monitor(void *pthread)
+{
+	t_info		*info;
+	t_philo		*philo;
+	long long	time;
+	int			count;
+
+	info = (t_info *)pthread;
+	vsleep(info->die);
+	while (!info->die_or_life)
+	{
+		count = 0;
+		while (count < info->philo_num)
 		{
-			print_philo_msg(monitor, DiedMsg);
-			exit (0);
+			philo = &info->philos[count];
+			time = now_time();
+			if (time - philo->last_eat_time > (long long)(info->die))
+			{
+				print_philo_msg(philo, DiedMsg);
+				info->die_or_life = 1;
+			}
+			if (info->must_eat)
+				must_eat_chk(info);
+			count++;
 		}
 	}
 	return (NULL);

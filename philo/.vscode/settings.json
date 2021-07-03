@@ -3,6 +3,10 @@
 		"philo.h": "c",
 		"bitset": "c",
 		"sstream": "c",
-		"__threading_support": "c"
+		"__threading_support": "c",
+		"__bit_reference": "c",
+		"algorithm": "c",
+		"chrono": "c",
+		"unordered_map": "c"
 	}
 }

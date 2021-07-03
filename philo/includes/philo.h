@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:21:29 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 15:38:08 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/03 17:53:26 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,6 @@ int			philo_sleep(t_philo *philo);
 */
 
 int			philo_think(t_philo *philo);
-
-/*
-** philo_die ==============================================
-*/
-
-int			philo_die(t_philo *philo);
 
 /*
 ** philo_die ==============================================

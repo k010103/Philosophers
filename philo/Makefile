@@ -6,7 +6,7 @@
 #    By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:24:29 by junmkang          #+#    #+#              #
-#    Updated: 2021/07/03 15:34:50 by junmkang         ###   ########.fr        #
+#    Updated: 2021/07/03 17:53:07 by junmkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ SRCS_NAME = \
 	philo_eat.c \
 	philo_sleep.c \
 	philo_think.c \
-	philo_die.c \
 	print_msg.c
 
 

@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 23:59:26 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/02 16:56:42 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/03 16:48:40 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ void	*ft_malloc(size_t size)
 
 	ptr = malloc(size);
 	if (!ptr)
-	{
-		write(STDERR_FILENO, "ft_malloc error", 12);
-		exit(1);
-	}
+		return (0);
 	memset(ptr, 0, sizeof(ptr));
 	return (ptr);
 }
