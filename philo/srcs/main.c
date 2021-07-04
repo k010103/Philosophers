@@ -6,11 +6,11 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:26:57 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/04 19:48:13 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/04 20:31:52 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philo.h"
+#	include "philo.h"
 
 int	main(int argc, char **argv)
 {

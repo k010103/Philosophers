@@ -6,13 +6,13 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:37:20 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/04 19:36:01 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/04 20:31:43 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philo.h"
+#	include "philo.h"
 
-int		philo_eat(t_philo *philo)
+int	philo_eat(t_philo *philo)
 {
 	long long		present_time;
 	long long		last_time;

@@ -6,11 +6,11 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 23:59:26 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 21:43:40 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/04 20:32:14 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philo.h"
+#	include "philo.h"
 
 void	*ft_malloc(size_t size)
 {
@@ -23,7 +23,7 @@ void	*ft_malloc(size_t size)
 	return (ptr);
 }
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	unsigned int		sum;
 	unsigned int		num;
@@ -48,7 +48,7 @@ int		ft_atoi(const char *str)
 	return (num * sum);
 }
 
-size_t		ft_strlen(const char *str)
+size_t	ft_strlen(const char *str)
 {
 	size_t	count;
 

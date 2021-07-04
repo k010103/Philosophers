@@ -6,13 +6,13 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 12:34:17 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/04 20:05:28 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/04 23:18:52 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#	include "philo.h"
 
-static int		must_eat_chk(t_info *info)
+static int	must_eat_chk(t_info *info)
 {
 	int		count;
 
@@ -23,10 +23,12 @@ static int		must_eat_chk(t_info *info)
 			return (_ERROR);
 		count++;
 	}
+	info->die_or_life = 1;
+	info->monitor_life = 1;
 	return (_OK);
 }
 
-void			*philo_monitor(void *pthread)
+void	*philo_monitor(void *pthread)
 {
 	t_info		*info;
 	t_philo		*philo;
@@ -37,8 +39,8 @@ void			*philo_monitor(void *pthread)
 	vsleep(info->die);
 	while (!info->monitor_life)
 	{
-		count = 0;
-		while (!info->die_or_life && count < info->philo_num)
+		count = -1;
+		while (!info->die_or_life && count++ < info->philo_num)
 		{
 			philo = &info->philos[count];
 			time = now_time();
@@ -49,12 +51,7 @@ void			*philo_monitor(void *pthread)
 				info->monitor_life = 1;
 			}
 			else if (info->must_eat)
-				if (!(must_eat_chk(info)))
-				{
-					info->die_or_life = 1;
-					info->monitor_life = 1;
-				}
-			count++;
+				must_eat_chk(info);
 		}
 	}
 	return (NULL);

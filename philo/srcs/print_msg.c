@@ -6,19 +6,19 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 23:56:34 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 22:15:00 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/04 23:20:01 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philo.h"
+#	include "philo.h"
 
-int		print_error_msg(char *str)
+int	print_error_msg(char *str)
 {
 	write(1, str, ft_strlen(str));
 	return (_ERROR);
 }
 
-int		print_philo_msg(t_philo *philo, char *msg)
+int	print_philo_msg(t_philo *philo, char *msg)
 {
 	long long		time;
 

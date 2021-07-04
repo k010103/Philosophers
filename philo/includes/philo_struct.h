@@ -6,14 +6,14 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 02:08:21 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/04 19:42:38 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/04 20:26:10 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #	ifndef PHILO_STRUCT_H
-#	define PHILO_STRUCT_H
+# define PHILO_STRUCT_H
 
-typedef struct				s_philo
+typedef struct s_philo
 {
 	pthread_t				thread;
 	long long				last_eat_time;
@@ -23,9 +23,9 @@ typedef struct				s_philo
 	struct s_info			*info;
 	int						eaten_num;
 	long long				revision_time;
-}							t_philo;
+}	t_philo;
 
-typedef struct				s_info
+typedef struct s_info
 {
 	int						philo_num;
 	int						die;
@@ -40,6 +40,6 @@ typedef struct				s_info
 	pthread_mutex_t			mutex_died;
 	pthread_mutex_t			*forks;
 	t_philo					*philos;
-}							t_info;
+}	t_info;
 
 #	endif

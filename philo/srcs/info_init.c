@@ -6,13 +6,13 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 16:36:42 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 16:46:28 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/04 23:12:10 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philo.h"
+#	include "philo.h"
 
-int		value_type_check(char **argv)
+int	value_type_check(char **argv)
 {
 	int		x;
 	int		y;
@@ -33,7 +33,7 @@ int		value_type_check(char **argv)
 	return (_OK);
 }
 
-int		value_check(t_info *info, int argc, char **argv)
+int	value_check(t_info *info, int argc, char **argv)
 {
 	if ((value_type_check(argv)))
 		return (_ERROR);
@@ -46,11 +46,13 @@ int		value_check(t_info *info, int argc, char **argv)
 	return (_OK);
 }
 
-int		info_init(t_info *info, int argc, char **argv)
+int	info_init(t_info *info, int argc, char **argv)
 {
 	if (!(argc == 5 || argc == 6))
-		return (print_error_msg("Invalid number. : 4 or 5"));
+		return (print_error_msg("Invalid number. : 4 or 5\n"));
 	if ((value_check(info, argc, argv)))
-		return (print_error_msg("Invalid value."));
+		return (print_error_msg("Invalid value.\n"));
+	if (info->philo_num >= 200)
+		return (print_error_msg("too many philo : error\nn < 200\n"));
 	return (_OK);
 }
