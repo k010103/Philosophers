@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 21:17:19 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/04 20:34:06 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/05 01:19:54 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	init_philo_junmkang(t_info *info)
 
 int	init_malloc_junmkang(t_info *info)
 {
-	info->philos = ft_malloc(sizeof(t_philo) * info->philo_num);
-	info->forks = ft_malloc(sizeof(pthread_mutex_t) * info->philo_num);
+	info->philos = ft_malloc(sizeof(t_philo) * (info->philo_num + 1));
+	info->forks = ft_malloc(sizeof(pthread_mutex_t) * (info->philo_num + 1));
 	if (!(info->philos) || !(info->forks))
 		return (print_error_msg("malloc : error\n"));
 	if (info->philo_num == 1)
