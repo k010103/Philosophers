@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 21:17:19 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 22:27:25 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/04 19:56:58 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@ int		init_philo_junmkang(t_info *info)
 {
 	int	count;
 
-	if (!(info->philos = ft_malloc(sizeof(t_philo) * info->philo_num)) || \
-		!(info->forks = ft_malloc(sizeof(pthread_mutex_t) * info->philo_num)))
-		return (print_error_msg("malloc : error\n"));
 	count = 0;
 	info->start_time = now_time();
 	while (count < info->philo_num)
@@ -34,12 +31,25 @@ int		init_philo_junmkang(t_info *info)
 		info->philos[count].info = info;
 		count++;
 	}
+	return (_OK);
+}
+
+int		init_malloc_junmkang(t_info *info)
+{
+	if (!(info->philos = ft_malloc(sizeof(t_philo) * info->philo_num)) || \
+		!(info->forks = ft_malloc(sizeof(pthread_mutex_t) * info->philo_num)))
+		return (print_error_msg("malloc : error\n"));
+	if (info->philo_num == 1)
+		info->it_one = 1;
 	pthread_mutex_init(&info->mutex_text, NULL);
+	pthread_mutex_init(&info->mutex_died, NULL);
 	return (_OK);
 }
 
 int		philo_setup(t_info *info)
 {
+	if ((init_malloc_junmkang(info)))
+		return (print_error_msg("init_malloc : error\n"));
 	if ((init_philo_junmkang(info)))
 		return (print_error_msg("init_philo : error\n"));
 	return (_OK);

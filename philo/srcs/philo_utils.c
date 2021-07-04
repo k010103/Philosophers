@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 13:29:33 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 22:30:10 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/04 20:01:33 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			vsleep(unsigned int time)
 	finish_time = time + now_time();
 	while (finish_time > (unsigned int)now_time())
 	{
-		usleep(50);
+		usleep(100);
 	}
 }
 

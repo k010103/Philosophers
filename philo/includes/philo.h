@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:21:29 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 22:24:25 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/04 20:04:34 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 #	define SLEEP_MSG	"is sleeping"
 #	define THINK_MSG	"is thinking"
 #	define DIED_MSG		"died"
+#	define END_EAT		"lived happily ever after. (~ ^^ )~"
 
 /*
 **	ft_utils ==============================================

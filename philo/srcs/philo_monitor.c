@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 12:34:17 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 22:41:52 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/04 20:05:28 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void			*philo_monitor(void *pthread)
 	vsleep(info->die);
 	while (!info->monitor_life)
 	{
-		count = -1;
-		while (count++ < info->philo_num)
+		count = 0;
+		while (!info->die_or_life && count < info->philo_num)
 		{
 			philo = &info->philos[count];
 			time = now_time();
@@ -51,9 +51,10 @@ void			*philo_monitor(void *pthread)
 			else if (info->must_eat)
 				if (!(must_eat_chk(info)))
 				{
-					info->monitor_life = 1;
 					info->die_or_life = 1;
+					info->monitor_life = 1;
 				}
+			count++;
 		}
 	}
 	return (NULL);

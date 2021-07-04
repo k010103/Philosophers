@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 15:19:18 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/03 22:27:17 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/04 20:05:43 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int			create_philos(t_info *info)
 	if ((pthread_create(&monitor, NULL, philo_monitor, (void *)info)))
 					return (_ERROR);
 	pthread_detach(monitor);
+	// pthread_mutex_unlock(&info->mutex_died);
 	return (_OK);
 }
 
