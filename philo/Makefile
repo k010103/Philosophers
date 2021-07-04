@@ -6,7 +6,7 @@
 #    By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:24:29 by junmkang          #+#    #+#              #
-#    Updated: 2021/07/04 23:24:08 by junmkang         ###   ########.fr        #
+#    Updated: 2021/07/05 00:26:46 by junmkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,8 @@ SRCS_NAME = \
 	philo_think.c \
 	print_msg.c
 
-
 CC = gcc
-RM = rm -f
+RM = rm -rf
 # FLAG = -Wall -Wextra -Werror -fsanitize=address -I $(INCLUDE_DIR)
 # FLAG = -Wall -Wextra -Werror -I $(INCLUDE_DIR)
 FLAG = -Wall -Wextra -I $(INCLUDE_DIR)
@@ -42,32 +41,49 @@ FLAG = -Wall -Wextra -I $(INCLUDE_DIR)
 CL_BOLD	 = \e[1m
 CL_DIM	= \e[2m
 CL_UDLINE = \e[4m
+CL_RED = \e[31m
+CL_ZERO = \e[0m
+CL_L_YELLOW = \e[93m
+CL_L_BLUE = \e[94m
+
+LF = \e[1K\r$(NO_COLOR)
 
 BASIC = \
 	$(addprefix $(SRCS_DIR), $(SRCS_NAME))
 
-OBJS = $(BASIC:.c=.o)
+OBJ_DIR = objs
+
+vpath %.c $(SRCS_DIR)
+
+OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(BASIC:.c=.o)))
+# OBJS = $(BASIC:.c=.o)
+
+# ========================================================================
 
 all : $(NAME)
 
 $(NAME): $(LIBFT_NAME) $(OBJS)
 	@$(CC) $(FLAG) -o $(NAME) $(OBJS)
-	@printf "$(CL_BOLD) 🍝 MAKE PHILO 🍝\n"
+	@printf "$(LF)$(CL_BOLD) 🍝 $(CL_ZERO)$(CL_BOLD)MAKE PHILO 🍝\n"
 
-%.o : %.c
-	@$(CC) $(FLAG) -c $*.c -o $@
+$(OBJ_DIR) :
+	@mkdir $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o : %.c $(OBJ_DIR)
+	@$(CC) $(FLAG) -c $< -o $@
+	@printf "$(LF) $(CL_RED) 🚧 Create $(CL_ZERO)$(CL_L_YELLOW)%-33.33s" $@
 
 norm :
 	norminette-v3 $(INCLUDE_DIR) $(SRCS_DIR)
 	@printf "$(CL_BOLD) 🥳 norm 에 걸리는게 없대. 🥳\n"
 
 clean :
-	@$(RM) $(OBJS)
-	@printf "$(CL_BOLD) 💀 *.o 가 지워졌어요. 💀\n"
+	@$(RM) $(OBJS) $(OBJ_DIR)
+	@printf "$(CL_L_BLUE) 💀 objs 가 지워졌어요. 💀\n"
 
 fclean : clean
 	@$(RM) $(NAME) $(LIBFT_NAME)
-	@printf "$(CL_BOLD) 💀 philo 가 지워졌어요. 💀\n"
+	@printf "$(CL_L_BLUE) 💀 philo 가 지워졌어요. 💀\n"
 
 re : fclean all
 	@printf "$(CL_BOLD) 🍝 re 가 진행되었어요. 🍝\n"
