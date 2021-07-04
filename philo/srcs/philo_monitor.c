@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 12:34:17 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/04 23:18:52 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/05 01:48:34 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	*philo_monitor(void *pthread)
 	int			count;
 
 	info = (t_info *)pthread;
-	vsleep(info->die);
+	vsleep(info->die - 2);
 	while (!info->monitor_life)
 	{
 		count = -1;
