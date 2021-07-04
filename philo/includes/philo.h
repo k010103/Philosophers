@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/21 21:21:29 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/04 20:25:05 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/05 00:40:43 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@
 # define _ERROR		1
 # define _OK		0
 
-# define FORK_MSG		"has taken a fork"
-# define EAT_MSG		"is eating"
-# define SLEEP_MSG		"is sleeping"
-# define THINK_MSG		"is thinking"
-# define DIED_MSG		"died"
-# define END_EAT		"lived happily ever after. (~ ^^ )~"
+# define FORK_MSG		"\e[33m has taken a fork \e[0m"
+# define EAT_MSG		"\e[95m is eating \e[0m"
+# define SLEEP_MSG		"\e[36m is sleeping \e[0m"
+# define THINK_MSG		"\e[35m is thinking \e[0m"
+# define DIED_MSG		"\e[31m died \e[0m"
+# define END_EAT		"lived happily ever after. \e[34m(~ ^^ )~\e[0m"
 
 // ft_utils ==============================================
 
