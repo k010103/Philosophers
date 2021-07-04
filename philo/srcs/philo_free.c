@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 21:35:15 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/04 20:32:36 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/04 23:25:01 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	philo_free(t_info *info)
 		return (print_error_msg("philo_join : error\n"));
 	if ((fork_destroy(info)))
 		return (print_error_msg("fork_destroy : error\n"));
-	if (info->must_eat)
+	if (info->must_eat && !info->it_one)
 		printf("%s\n", END_EAT);
 	return (_OK);
 }

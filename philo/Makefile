@@ -6,7 +6,7 @@
 #    By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:24:29 by junmkang          #+#    #+#              #
-#    Updated: 2021/07/04 23:14:11 by junmkang         ###   ########.fr        #
+#    Updated: 2021/07/04 23:24:08 by junmkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ $(NAME): $(LIBFT_NAME) $(OBJS)
 	@$(CC) $(FLAG) -c $*.c -o $@
 
 norm :
-	norminette $(INCLUDE_DIR) $(SRCS_DIR)
+	norminette-v3 $(INCLUDE_DIR) $(SRCS_DIR)
 	@printf "$(CL_BOLD) 🥳 norm 에 걸리는게 없대. 🥳\n"
 
 clean :
