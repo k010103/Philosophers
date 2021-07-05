@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 15:19:18 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/05 14:26:29 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/05 18:06:22 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	create_philos(t_info *info)
 			return (_ERROR);
 		count++;
 	}
-	if (info->must_eat != 0)
+	if (info->must_eat != 0 && info->philo_num > 1)
 	{
 		error = pthread_create(&monitor, NULL, philo_must_eat, (void *)info);
 		if (error)
