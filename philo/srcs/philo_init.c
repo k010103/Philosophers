@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 21:17:19 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/05 01:39:53 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/05 15:11:45 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	init_malloc_junmkang(t_info *info)
 		return (print_error_msg("malloc : error\n"));
 	if (info->philo_num == 1)
 		info->it_one = 1;
-	pthread_mutex_init(&info->mutex_text, NULL);
-	pthread_mutex_init(&info->mutex_died, NULL);
+	pthread_mutex_init(&(info->mutex_text), NULL);
+	pthread_mutex_init(&(info->died_mutex), NULL);
 	return (_OK);
 }
 

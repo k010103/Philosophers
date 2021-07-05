@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/24 14:37:20 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/05 01:30:29 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/05 14:48:08 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ int	philo_eat(t_philo *philo)
 		philo->eaten_num += 1;
 		last_time = now_time();
 		philo->last_eat_time = last_time;
-	}
-	else
-	{
-		philo->info->die_or_life = 1;
-		return (_ERROR);
 	}
 	return (_OK);
 }

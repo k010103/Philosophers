@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 15:19:18 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/05 01:47:17 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/05 14:26:29 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	*philo_action(void *v_pthread)
 	t_philo		*philo;
 
 	philo = (t_philo *)v_pthread;
-	if (philo->p_ptr % 2 == 0)
-		vsleep(2);
+	if (philo->p_ptr % 2 == 0 && philo->info->philo_num > 1)
+		vsleep(philo->info->eat);
 	philo->last_eat_time = now_time();
 	while (!philo->info->die_or_life)
 	{
@@ -44,12 +44,19 @@ int	create_philos(t_info *info)
 						NULL, philo_action, (void *)&info->philos[count]);
 		if (error)
 			return (_ERROR);
+		error = pthread_create(&monitor, NULL, \
+								philo_monitor, (void *)&info->philos[count]);
+		pthread_detach(monitor);
+		if (error)
+			return (_ERROR);
 		count++;
 	}
-	error = pthread_create(&monitor, NULL, philo_monitor, (void *)info);
-	if (error)
-		return (_ERROR);
-	pthread_detach(monitor);
+	if (info->must_eat != 0)
+	{
+		error = pthread_create(&monitor, NULL, philo_must_eat, (void *)info);
+		if (error)
+			return (_ERROR);
+	}
 	return (_OK);
 }
 
