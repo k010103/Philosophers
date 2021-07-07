@@ -6,7 +6,7 @@
 #    By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:24:29 by junmkang          #+#    #+#              #
-#    Updated: 2021/07/05 15:17:02 by junmkang         ###   ########.fr        #
+#    Updated: 2021/07/07 10:08:45 by junmkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,8 @@ SRCS_NAME = \
 CC = gcc
 RM = rm -rf
 # FLAG = -Wall -Wextra -Werror -fsanitize=address -I $(INCLUDE_DIR)
-# FLAG = -Wall -Wextra -Werror -I $(INCLUDE_DIR)
-FLAG = -Wall -Wextra -I $(INCLUDE_DIR)
+FLAG = -Wall -Wextra -Werror -I $(INCLUDE_DIR)
+# FLAG = -Wall -Wextra -I $(INCLUDE_DIR)
 
 # Color
 CL_BOLD	 = \e[1m
@@ -74,7 +74,7 @@ $(OBJ_DIR)/%.o : %.c $(OBJ_DIR)
 	@printf "$(LF) $(CL_RED) 🚧 Create $(CL_ZERO)$(CL_L_YELLOW)%-33.33s" $@
 
 norm :
-	norminette-v3 $(INCLUDE_DIR) $(SRCS_DIR)
+	norminette $(INCLUDE_DIR) $(SRCS_DIR)
 	@printf "$(CL_BOLD) 🥳 norm 에 걸리는게 없대. 🥳\n"
 
 clean :
