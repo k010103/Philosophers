@@ -1,0 +1,36 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+create_philos	philo_loop.c	/^int	create_philos(t_info *info)$/;"	f
+create_philos_must_eat	philo_loop.c	/^static int	create_philos_must_eat(t_info *info)$/;"	f	file:
+fork_destroy	philo_free.c	/^int	fork_destroy(t_info *info)$/;"	f
+ft_atoi	ft_utils.c	/^int	ft_atoi(const char *str)$/;"	f
+ft_malloc	ft_utils.c	/^void	*ft_malloc(size_t size)$/;"	f
+ft_strlen	ft_utils.c	/^size_t	ft_strlen(const char *str)$/;"	f
+info_init	info_init.c	/^int	info_init(t_info *info, int argc, char **argv)$/;"	f
+init_malloc_junmkang	philo_init.c	/^int	init_malloc_junmkang(t_info *info)$/;"	f
+init_philo_junmkang	philo_init.c	/^int	init_philo_junmkang(t_info *info)$/;"	f
+main	main.c	/^int	main(int argc, char **argv)$/;"	f
+ms_now_time	philo_utils.c	/^long long	ms_now_time(t_philo *philo)$/;"	f
+must_eat_chk	philo_monitor.c	/^static int	must_eat_chk(t_info *info)$/;"	f	file:
+now_time	philo_utils.c	/^long long	now_time(void)$/;"	f
+philo_action	philo_loop.c	/^void	*philo_action(void *v_pthread)$/;"	f
+philo_eat	philo_eat.c	/^int	philo_eat(t_philo *philo)$/;"	f
+philo_forks	phlio_forks.c	/^int	philo_forks(t_philo *philo)$/;"	f
+philo_free	philo_free.c	/^int	philo_free(t_info *info)$/;"	f
+philo_join	philo_free.c	/^int	philo_join(t_info *info)$/;"	f
+philo_loop	philo_loop.c	/^int	philo_loop(t_info *info)$/;"	f
+philo_monitor	philo_monitor.c	/^void	*philo_monitor(void *pthread)$/;"	f
+philo_must_eat	philo_monitor.c	/^void	*philo_must_eat(void *pthread)$/;"	f
+philo_setup	philo_init.c	/^int	philo_setup(t_info *info)$/;"	f
+philo_sleep	philo_sleep.c	/^int	philo_sleep(t_philo *philo)$/;"	f
+philo_think	philo_think.c	/^int	philo_think(t_philo *philo)$/;"	f
+philo_unforks	phlio_forks.c	/^int	philo_unforks(t_philo *philo)$/;"	f
+print_error_msg	print_msg.c	/^int	print_error_msg(char *str)$/;"	f
+print_philo_msg	print_msg.c	/^int	print_philo_msg(t_philo *philo, char *msg)$/;"	f
+value_check	info_init.c	/^int	value_check(t_info *info, int argc, char **argv)$/;"	f
+value_type_check	info_init.c	/^int	value_type_check(char **argv)$/;"	f
+vsleep	philo_utils.c	/^void	vsleep(unsigned int time)$/;"	f

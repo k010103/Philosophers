@@ -6,7 +6,7 @@
 #    By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:24:29 by junmkang          #+#    #+#              #
-#    Updated: 2021/07/07 10:08:45 by junmkang         ###   ########.fr        #
+#    Updated: 2021/07/08 13:35:48 by junmkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,8 +55,8 @@ OBJ_DIR = objs
 
 vpath %.c $(SRCS_DIR)
 
-OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(BASIC:.c=.o)))
-# OBJS = $(BASIC:.c=.o)
+# OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(BASIC:.c=.o)))
+OBJS = $(BASIC:.c=.o)
 
 # ========================================================================
 
@@ -69,7 +69,7 @@ $(NAME): $(LIBFT_NAME) $(OBJS)
 $(OBJ_DIR) :
 	@mkdir $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o : %.c $(OBJ_DIR)
+%.o : %.c
 	@$(CC) $(FLAG) -c $< -o $@
 	@printf "$(LF) $(CL_RED) 🚧 Create $(CL_ZERO)$(CL_L_YELLOW)%-33.33s" $@
 
