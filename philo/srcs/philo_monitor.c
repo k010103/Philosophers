@@ -6,7 +6,7 @@
 /*   By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/03 12:34:17 by junmkang          #+#    #+#             */
-/*   Updated: 2021/07/05 15:19:50 by junmkang         ###   ########.fr       */
+/*   Updated: 2021/07/08 21:29:29 by junmkang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*philo_must_eat(void *pthread)
 	t_info	*info;
 
 	info = (t_info *)pthread;
-	while (!info->monitor_life)
+	while (!info->monitor_life && !info->die_or_life)
 	{
 		if (!must_eat_chk(info))
 		{
