@@ -45,6 +45,8 @@ CL_RED = \e[31m
 CL_ZERO = \e[0m
 CL_L_YELLOW = \e[93m
 CL_L_BLUE = \e[94m
+CL_BLUE = \e[34m
+CL_L_MAGENTA = \e[95m
 
 LF = \e[1K\r$(NO_COLOR)
 
@@ -55,8 +57,8 @@ OBJ_DIR = objs
 
 vpath %.c $(SRCS_DIR)
 
-# OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(BASIC:.c=.o)))
-OBJS = $(BASIC:.c=.o)
+OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(BASIC:.c=.o)))
+# OBJS = $(BASIC:.c=.o)
 
 # ========================================================================
 
@@ -69,9 +71,10 @@ $(NAME): $(LIBFT_NAME) $(OBJS)
 $(OBJ_DIR) :
 	@mkdir $(OBJ_DIR)
 
-%.o : %.c
+# %.o : %.c
+$(OBJ_DIR)/%.o : %.c $(OBJ_DIR)
 	@$(CC) $(FLAG) -c $< -o $@
-	@printf "$(LF) $(CL_RED) 🚧 Create $(CL_ZERO)$(CL_L_YELLOW)%-33.33s" $@
+	@printf "$(LF) $(CL_L_MAGENTA) 🔨 만드는중 $(CL_ZERO)$(CL_L_YELLOW)%-33.33s" $@
 
 norm :
 	norminette $(INCLUDE_DIR) $(SRCS_DIR)
