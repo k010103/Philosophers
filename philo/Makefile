@@ -6,7 +6,7 @@
 #    By: junmkang <junmkang@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/28 15:24:29 by junmkang          #+#    #+#              #
-#    Updated: 2021/07/08 21:30:06 by junmkang         ###   ########.fr        #
+#    Updated: 2021/08/10 17:20:21 by junmkang         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(BASIC:.c=.o)))
 
 all : $(NAME)
 
-$(NAME): $(LIBFT_NAME) $(OBJS)
+$(NAME): $(OBJS)
 	@$(CC) $(FLAG) -o $(NAME) $(OBJS)
 	@printf "$(LF)$(CL_BOLD) 🍝 $(CL_ZERO)$(CL_BOLD)MAKE PHILO 🍝\n"
 
@@ -85,7 +85,7 @@ clean :
 	@printf "$(CL_L_BLUE) 💀 objs 가 지워졌어요. 💀\n"
 
 fclean : clean
-	@$(RM) $(NAME) $(LIBFT_NAME)
+	@$(RM) $(NAME)
 	@printf "$(CL_L_BLUE) 💀 philo 가 지워졌어요. 💀\n"
 
 re : fclean all
