@@ -42,6 +42,7 @@ void	*philo_must_eat(void *pthread)
 	return (NULL);
 }
 
+
 void	*philo_monitor(void *pthread)
 {
 	t_philo		*philo;
@@ -56,7 +57,8 @@ void	*philo_monitor(void *pthread)
 		{
 			pthread_mutex_lock(&philo->info->died_mutex);
 			philo->info->die_or_life = 1;
-			print_philo_msg(philo, DIED_MSG);
+			time -= philo->info->start_time;
+			printf("%lld\t%d\t%s\n", time, philo->p_ptr + 1, DIED_MSG);
 		}
 	}
 	return (NULL);

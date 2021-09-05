@@ -52,7 +52,7 @@ int	info_init(t_info *info, int argc, char **argv)
 		return (print_error_msg("Invalid number. : 4 or 5\n"));
 	if ((value_check(info, argc, argv)))
 		return (print_error_msg("Invalid value.\n"));
-	if (info->philo_num >= 200)
+	if (info->philo_num >= 201)
 		return (print_error_msg("too many philo : error\nn < 200\n"));
 	return (_OK);
 }

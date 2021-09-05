@@ -22,9 +22,13 @@ int	print_philo_msg(t_philo *philo, char *msg)
 {
 	long long		time;
 
+	if (philo->info->die_or_life)
+		return (_ERROR);
 	pthread_mutex_lock(&philo->info->mutex_text);
+	pthread_mutex_lock(&philo->info->died_mutex);
 	time = now_time() - philo->info->start_time;
 	printf("%lld\t%d\t%s\n", time, philo->p_ptr + 1, msg);
 	pthread_mutex_unlock(&philo->info->mutex_text);
+	pthread_mutex_unlock(&philo->info->died_mutex);
 	return (_OK);
 }
