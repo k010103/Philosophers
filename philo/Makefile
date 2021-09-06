@@ -37,6 +37,8 @@ RM = rm -rf
 FLAG = -Wall -Wextra -Werror -I $(INCLUDE_DIR)
 # FLAG = -Wall -Wextra -I $(INCLUDE_DIR)
 
+# ========================================================================
+
 # Color
 CL_BOLD	 = \e[1m
 CL_DIM	= \e[2m
